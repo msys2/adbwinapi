@@ -1,0 +1,23 @@
+--- a/host/windows/usb/api/adb_api_instance.h
++++ b/host/windows/usb/api/adb_api_instance.h
+@@ -46,6 +46,9 @@
+      decremented.
+   So, at the end, this object destroys itself when refcount drops to zero.
+ */
++
++typedef void *ADBAPIINSTANCEHANDLE;
++
+ class AdbApiInstance {
+  public:
+   /** \brief Constructs the object
+--- a/host/windows/usb/winusb/adb_winusb_interface.h
++++ b/host/windows/usb/winusb/adb_winusb_interface.h
+@@ -24,6 +24,8 @@
+ 
+ #include "..\api\adb_interface.h"
+ 
++#include <winusb.h>
++
+ /** \brief Encapsulates an interface on our USB device that is accessible
+   via WinUsb API.
+ */

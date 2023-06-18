@@ -1,0 +1,32 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: build-${{ matrix.arch }}
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: cmd
+    strategy:
+      matrix:
+        arch: [x64, Win32, ARM64]
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: build
+      run: build.cmd ${{ matrix.arch }}
+    - name: upload binaries
+      uses: actions/upload-artifact@v3
+      with:
+        name: adbwinapi-${{ matrix.arch }}
+        path: build-${{ matrix.arch }}/Release/*.dll
+    - name: upload sources
+      if: contains(matrix.arch, 'x64')
+      uses: actions/upload-artifact@v3
+      with:
+        name: adbwinapi-sources
+        path: adbwinapi_sources.zip
