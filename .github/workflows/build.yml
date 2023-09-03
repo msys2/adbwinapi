@@ -30,3 +30,30 @@ jobs:
       with:
         name: adbwinapi-sources
         path: adbwinapi_sources.zip
+  merge:
+    needs: [build]
+    runs-on: windows-latest
+    steps:
+    - name: download arm64
+      uses: actions/download-artifact@v3
+      with:
+        name: adbwinapi-ARM64
+        path: arm64
+    - name: download win32
+      uses: actions/download-artifact@v3
+      with:
+        name: adbwinapi-Win32
+        path: win32
+    - name: download x64
+      uses: actions/download-artifact@v3
+      with:
+        name: adbwinapi-x64
+        path: x64
+    - name: upload merged artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: adbwinapi
+        path: |
+          arm64
+          win32
+          x64
