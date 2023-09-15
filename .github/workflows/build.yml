@@ -16,7 +16,7 @@ jobs:
         arch: [x64, Win32, ARM64]
     steps:
     - name: checkout
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
     - name: build
       run: build.cmd ${{ matrix.arch }}
     - name: upload binaries
