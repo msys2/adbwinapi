@@ -1,6 +1,6 @@
 :: Build script for adbwinapi
 
-set "GIT_TAG=34.0.5"
+set "GIT_TAG=35.0.1"
 set "GIT_DIR=development"
 set "BUILD_ARCH=%~1"
 
