@@ -1,13 +1,15 @@
 :: Build script for adbwinapi
 
-set "GIT_TAG=35.0.2"
+:: newer platform-tools-"%GIT_TAG%" are not tagged in AOSP
+:: sync this with nmeum/android-tools project
+set "GIT_BRANCH=android-16.0.0_r4"
 set "GIT_DIR=development"
 set "BUILD_ARCH=%~1"
 
 if not exist "%cd%\%GIT_DIR%\" (
 git clone ^
 --depth=1 ^
---branch platform-tools-"%GIT_TAG%" ^
+--branch "%GIT_BRANCH%" ^
 https://android.googlesource.com/platform/development.git ^
 "%GIT_DIR%"
 
@@ -23,7 +25,7 @@ set "BUILD_ARCH=x64"
 copy CMakeLists.txt "%GIT_DIR%\CMakeLists.txt"
 
 cmake ^
--G "Visual Studio 17 2022" ^
+-G "Visual Studio 18 2026" ^
 -A "%BUILD_ARCH%" ^
 -B "build-%BUILD_ARCH%" ^
 -S "%GIT_DIR%"
