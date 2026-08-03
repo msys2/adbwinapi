@@ -2,7 +2,7 @@
 
 :: newer platform-tools-"%GIT_TAG%" are not tagged in AOSP
 :: sync this with nmeum/android-tools project
-set "GIT_BRANCH=android-16.0.0_r4"
+set "GIT_BRANCH=android-17.0.0_r1"
 set "GIT_DIR=development"
 set "BUILD_ARCH=%~1"
 
